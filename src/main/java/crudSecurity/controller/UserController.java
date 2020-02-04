@@ -22,9 +22,13 @@ public class UserController {
 
     @GetMapping(value = "/admin")
     public String printUsers(ModelMap model) {
+        User user1 = new User();
+        User user2 = new User();
+        userService.add(user1);
+        userService.add(user2);
         List<User> users = userService.getUsers();
         model.addAttribute("users", users);
-        return "users";
+        return "admin";
     }
 
     @GetMapping(value = "/delete/{id}")

@@ -50,8 +50,7 @@ public class HiberConfig {
         props.put("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
 
         sessionFactoryBean.setHibernateProperties(props);
-        sessionFactoryBean.setAnnotatedClasses(User.class);
-        sessionFactoryBean.setAnnotatedClasses(Role.class);
+        sessionFactoryBean.setPackagesToScan("crudSecurity.model");
         return sessionFactoryBean;
     }
 
