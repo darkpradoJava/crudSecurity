@@ -66,7 +66,7 @@ public class User implements UserDetails {
     }
 
     public Set<Role> getRoles() {
-        return this.roles;
+        return roles;
     }
 
     public void setId(Long id) {
@@ -117,6 +117,11 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "User: login " + login + ", role " + roles;
     }
 
 }

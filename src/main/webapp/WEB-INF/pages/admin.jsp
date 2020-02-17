@@ -19,6 +19,7 @@
         <th>Login</th>
         <th>Password</th>
         <th>Name</th>
+        <th>Role</th>
         <th colspan="2">Action</th>
     </tr>
     <c:forEach var="user" items="${users}">
@@ -27,6 +28,9 @@
             <td>${user.login}</td>
             <td>${user.password}</td>
             <td>${user.name}</td>
+            <td>
+                <c:forEach items="${user.roles}" var="role">${role.role}</c:forEach>
+            </td>
             <td width="40"><a href="/edit/${user.id}">edit</a></td>
             <td width="40"><a href="/delete/${user.id}">delete</a></td>
         </tr>

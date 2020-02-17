@@ -1,19 +1,21 @@
 package crudSecurity.controller;
 
+import crudSecurity.model.Role;
 import crudSecurity.model.User;
 import crudSecurity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
 public class UserController {
 
     private UserService userService;
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -22,19 +24,14 @@ public class UserController {
 
     @GetMapping(value = "/admin")
     public String printUsers(ModelMap model) {
-        User user1 = new User();
-        User user2 = new User();
-        userService.add(user1);
-        userService.add(user2);
-        List<User> users = userService.getUsers();
-        model.addAttribute("users", users);
+        model.addAttribute("users", userService.getUsers());
         return "admin";
     }
 
-    @GetMapping(value = "/delete/{id}")
+    @GetMapping(value = "/admin/delete/{id}")
     public ModelAndView deleteUser(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/users");
+        modelAndView.setViewName("redirect:/admin");
         User user = userService.getUserById(id);
         if (user != null) {
             userService.delete(user);
@@ -42,22 +39,22 @@ public class UserController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/add")
+    @GetMapping(value = "/admin/add")
     public ModelAndView addPage(ModelMap model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("edit");
         return modelAndView;
     }
 
-    @PostMapping(value = "/add")
-    public ModelAndView addUser(@ModelAttribute("user") User user) {
+    @PostMapping(value = "/admin/add")
+    public ModelAndView addUser(@ModelAttribute("user") User user, String role) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/users");
-        userService.add(user);
+        modelAndView.setViewName("redirect:/admin");
+        userService.add(user, role);
         return modelAndView;
     }
 
-    @GetMapping(value = "/edit/{id}")
+    @GetMapping(value = "/admin/edit/{id}")
     public ModelAndView editUserPage(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView();
         User tempUser = userService.getUserById(id);
@@ -67,11 +64,11 @@ public class UserController {
         return modelAndView;
     }
 
-    @PostMapping(value = "/edit")
+    @PostMapping(value = "/admin/edit")
     public ModelAndView editUser(@RequestParam(value = "id") Long id, @ModelAttribute("user") User user) {
         ModelAndView modelAndView = new ModelAndView();
         user.setId(id);
-        modelAndView.setViewName("redirect:/users");
+        modelAndView.setViewName("redirect:/admin");
         userService.update(user);
         return modelAndView;
     }
