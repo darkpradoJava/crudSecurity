@@ -11,6 +11,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Controller
 public class UserController {
 
@@ -59,17 +62,17 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         User tempUser = userService.getUserById(id);
         modelAndView.addObject("user", tempUser);
-        modelAndView.setViewName("edit");
+        modelAndView.setViewName("/edit");
         modelAndView.addObject("id", id);
         return modelAndView;
     }
 
     @PostMapping(value = "/admin/edit")
-    public ModelAndView editUser(@RequestParam(value = "id") Long id, @ModelAttribute("user") User user) {
+    public ModelAndView editUser(@RequestParam(value = "id") Long id, @ModelAttribute("user") User user, String role) {
         ModelAndView modelAndView = new ModelAndView();
         user.setId(id);
         modelAndView.setViewName("redirect:/admin");
-        userService.update(user);
+        userService.update(user, role);
         return modelAndView;
     }
 }

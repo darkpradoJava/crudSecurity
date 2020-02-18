@@ -1,4 +1,4 @@
-package crudSecurity.config;
+package crudSecurity.secureConfig;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

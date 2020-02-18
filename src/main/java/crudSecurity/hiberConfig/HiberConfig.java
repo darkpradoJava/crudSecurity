@@ -1,4 +1,4 @@
-package crudSecurity.config;
+package crudSecurity.hiberConfig;
 
 import crudSecurity.model.Role;
 import crudSecurity.model.User;

@@ -1,4 +1,4 @@
-package crudSecurity.config;
+package crudSecurity.hiberConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

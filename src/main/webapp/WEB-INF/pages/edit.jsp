@@ -27,7 +27,7 @@
     User select: login "<c:out value="${user.login}"/>", password "
     <c:out value="${user.password}"/>", name "<c:out value="${user.name}"/>"</p>
 </c:if>
-<form action="${action}" method="POST">
+<form action="/admin${action}" method="POST">
     <c:if test="${!empty id}">
         <input type="hidden" name="id" value="${id}">
     </c:if>

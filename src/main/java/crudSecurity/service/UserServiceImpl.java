@@ -38,7 +38,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(User user) {
+    public void update(User user, String role) {
+        Set<Role> setRoles = new HashSet<>();
+        if(role.equals("ADMIN")) {
+            setRoles.add(roleDao.getRoleById(1L));
+        } else {
+            setRoles.add(roleDao.getRoleById(2L));
+        }
+        user.setRoles(setRoles);
         userDao.update(user);
     }
 

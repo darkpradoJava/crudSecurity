@@ -1,5 +1,6 @@
-package crudSecurity.config;
+package crudSecurity.hiberConfig;
 
+import crudSecurity.secureConfig.SecurityConfig;
 import crudSecurity.service.MyUserDetailService;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;

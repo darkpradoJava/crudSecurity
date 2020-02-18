@@ -31,11 +31,11 @@
             <td>
                 <c:forEach items="${user.roles}" var="role">${role.role}</c:forEach>
             </td>
-            <td width="40"><a href="/edit/${user.id}">edit</a></td>
-            <td width="40"><a href="/delete/${user.id}">delete</a></td>
+            <td width="40"><a href="/admin/edit/${user.id}">edit</a></td>
+            <td width="40"><a href="/admin/delete/${user.id}">delete</a></td>
         </tr>
     </c:forEach>
 </table>
-<p align="center"><a href="/add">Add user</a></p>
+<p align="center"><a href="/admin/add">Add user</a></p>
 </body>
 </html>

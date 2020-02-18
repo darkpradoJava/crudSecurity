@@ -1,4 +1,4 @@
-package crudSecurity.config;
+package crudSecurity.secureConfig;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -16,10 +16,10 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-        if (roles.contains("USER")) {
-            httpServletResponse.sendRedirect("/user");
-        } else {
+        if (roles.contains("ADMIN")) {
             httpServletResponse.sendRedirect("/admin");
+        } else if (roles.contains("USER")) {
+            httpServletResponse.sendRedirect("/user");
         }
     }
 }
