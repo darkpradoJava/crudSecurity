@@ -37,5 +37,8 @@
     </c:forEach>
 </table>
 <p align="center"><a href="/admin/add">Add user</a></p>
+<form action="/logout" method="post">
+    <input value="Logout" type="submit">
+</form>
 </body>
 </html>

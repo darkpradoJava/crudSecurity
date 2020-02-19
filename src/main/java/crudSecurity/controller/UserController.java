@@ -1,24 +1,17 @@
 package crudSecurity.controller;
 
-import crudSecurity.model.Role;
 import crudSecurity.model.User;
 import crudSecurity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @Controller
 public class UserController {
 
     private UserService userService;
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Autowired
     public void setUserService(UserService userService) {
