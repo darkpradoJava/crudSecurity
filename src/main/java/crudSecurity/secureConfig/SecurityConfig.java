@@ -34,16 +34,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        http.csrf().disable();
+
         http
                 // делаем страницу регистрации недоступной для авторизированных пользователей
                 .authorizeRequests()
                 //страницы аутентификаци доступна всем
                 // защищенные URL
                 .antMatchers("/").permitAll()
-                .antMatchers("/user").access("hasAnyRole('USER', 'ADMIN')")
-                .antMatchers("/admin").access("hasAnyRole('ADMIN')");
-//                .antMatchers("/user/**").authenticated()
-//                .antMatchers("/admin/**").hasAuthority("ADMIN");
+                .antMatchers("/admin/**").access("hasAuthority('ADMIN')")
+                .antMatchers("/user/**").access("hasAnyAuthority('ADMIN', 'USER')");
 
         http.formLogin()
                 // указываем страницу с формой логина
@@ -66,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // указываем URL при удачном логауте
                 .logoutSuccessUrl("/login?logout")
                 //выклчаем кроссдоменную секьюрность (на этапе обучения неважна)
-                .and().csrf().disable();
+                .and();
 
     }
 

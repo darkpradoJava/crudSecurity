@@ -1,14 +1,14 @@
 package crudSecurity.controller;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
-@RestController
+@Controller
 public class MainController {
     private ModelAndView modelAndView = new ModelAndView();
 

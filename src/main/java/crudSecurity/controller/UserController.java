@@ -1,12 +1,17 @@
 package crudSecurity.controller;
 
+import crudSecurity.model.Role;
 import crudSecurity.model.User;
 import crudSecurity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -63,9 +68,11 @@ public class UserController {
     @PostMapping(value = "/admin/edit")
     public ModelAndView editUser(@RequestParam(value = "id") Long id, @ModelAttribute("user") User user, String role) {
         ModelAndView modelAndView = new ModelAndView();
+        Set<Role> set = user.getRoles();
         user.setId(id);
         modelAndView.setViewName("redirect:/admin");
         userService.update(user, role);
         return modelAndView;
     }
+
 }
