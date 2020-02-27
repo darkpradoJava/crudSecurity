@@ -42,8 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //страницы аутентификаци доступна всем
                 // защищенные URL
                 .antMatchers("/").permitAll()
-                .antMatchers("/admin/**").access("hasAuthority('ADMIN')")
-                .antMatchers("/user/**").access("hasAnyAuthority('ADMIN', 'USER')");
+                .antMatchers("/user/**").access("hasAnyAuthority('ADMIN', 'USER')")
+                .antMatchers("/admin/**").access("hasAuthority('ADMIN')");
 
         http.formLogin()
                 // указываем страницу с формой логина
